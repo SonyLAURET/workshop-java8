@@ -18,15 +18,17 @@ import static org.junit.Assert.*;
 public class Lambda_02_Test {
 
     // tag::PersonToAccountMapper[]
-    interface PersonToAccountMapper {
-        Account map(Person p);
+	//generic
+    interface PersonToAnyMapper<T> {
+        T map(Person p);
     }
     // end::PersonToAccountMapper[]
 
     // tag::map[]
-    private List<Account> map(List<Person> personList, PersonToAccountMapper mapper) {
-        // TODO implémenter la méthode
-    	List<Account> persons = new ArrayList<Account>();
+    //care here, type is before the method because the class don't have a type.
+    private <T> List<T> map(List<Person> personList, PersonToAnyMapper<T> mapper) {
+        // implémenter la méthode
+    	List<T> persons = new ArrayList<>();
     	for (Person person : personList) {   	
 			if (mapper.map(person) != null) {				
 				persons.add(mapper.map(person))	;			
@@ -65,12 +67,17 @@ public class Lambda_02_Test {
 
         List<Person> personList = Data.buildPersonList(100);
 
-        // TODO transformer la liste de personnes en liste de prénoms
-        List<String> result = new ArrayList<>();
-        Iterator<Person> p = personList.iterator();
+        //transformer la liste de personnes en liste de prénoms
+        
+        //with generic method
+        List<String> result = map(personList, p -> p.getFirstname());
+        
+        //without  generic method
+        /* List<String> result = new ArrayList<>();
+       Iterator<Person> p = personList.iterator();
         while (p.hasNext()) {
 			result.add(((Person)p.next()).getFirstname());
-        }
+        }*/
       
 
         assertThat(result, hasSize(personList.size()));
