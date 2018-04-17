@@ -19,9 +19,9 @@ public class Method_02_Test {
     interface IDao {
         List<Person> findAll();
 
-        // TODO créer une méthode String format()
-        // TODO la méthode retourne une chaîne de la forme [<nb_personnes> persons]
-        // TODO exemple de résultat : "[14 persons]", "[30 persons]"
+        // créer une méthode String format()
+        // la méthode retourne une chaîne de la forme [<nb_personnes> persons]
+        // exemple de résultat : "[14 persons]", "[30 persons]"
         default String format() {
         	int nb_personnes =findAll().size();
         	return "["+nb_personnes+" persons]";
@@ -44,10 +44,10 @@ public class Method_02_Test {
     	
         	return "DaoA"+  IDao.super.format();
         }
-        // TODO redéfinir la méthode String format()
-        // TODO la méthode retourne une chaîne de la forme DaoA[<nb_personnes> persons]
-        // TODO exemple de résultat : "DaoA[14 persons]", "DaoA[30 persons]"
-        // TODO l'implémentation réutilise la méthode format() de l'interface
+        // redéfinir la méthode String format()
+        // la méthode retourne une chaîne de la forme DaoA[<nb_personnes> persons]
+        // exemple de résultat : "DaoA[14 persons]", "DaoA[30 persons]"
+        // l'implémentation réutilise la méthode format() de l'interface
 
     }
     // end::DaoA[]
