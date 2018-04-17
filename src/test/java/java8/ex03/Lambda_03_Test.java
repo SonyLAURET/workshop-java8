@@ -14,34 +14,42 @@ import static org.junit.Assert.*;
  */
 public class Lambda_03_Test {
 
-    // tag::PersonProcessor[]
-    interface PersonProcessor {
-        void process(Person p);
-    }
-    // end::PersonProcessor[]
+	// tag::PersonProcessor[]
+	interface PersonProcessor {
+		void process(Person p);
+	}
+	// end::PersonProcessor[]
 
-    // tag::forEach[]
-    private void forEach(List<Person> source, PersonProcessor processor) {
-       // TOD0
-    }
-    // end::forEach[]
+	// tag::forEach[]
+	private void forEach(List<Person> source, PersonProcessor processor) {
+		// TOD0
+		for (Person person : source) {
+			processor.process(person);
+		}
+	}
+	// end::forEach[]
 
+	// tag::test_verify_person[]
+	@Test
+	public void test_verify_person() throws Exception {
 
-    // tag::test_verify_person[]
-    @Test
-    public void test_verify_person() throws Exception {
+		List<Person> personList = Data.buildPersonList(100);
 
-        List<Person> personList = Data.buildPersonList(100);
+		// vérifier qu'une personne à un prénom qui commence par first
+		// vérifier qu'une personne à un nom qui commence par last
+		// vérifier qu'une personne à un age > 0
 
-        // TODO vérifier qu'une personne à un prénom qui commence par first
-        // TODO vérifier qu'une personne à un nom qui commence par last
-        // TODO vérifier qu'une personne à un age > 0
-        PersonProcessor verifyPerson = null;
+		PersonProcessor verifyPerson = new PersonProcessor() {
+			public void process(Person p) {
+				assertTrue(p.getFirstname().startsWith("first"));
+				assertTrue(p.getLastname().startsWith("last"));
+				assertTrue(p.getAge() > 0);
+			}
 
-        assertThat(verifyPerson, notNullValue());
+		};
 
-        forEach(personList, verifyPerson);
-    }
-    // end::test_verify_person[]
+		forEach(personList, verifyPerson);
+	};
+	// end::test_verify_person[]
 
 }
