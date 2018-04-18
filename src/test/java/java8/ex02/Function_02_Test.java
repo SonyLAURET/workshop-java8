@@ -15,8 +15,8 @@ import static org.junit.Assert.*;
 public class Function_02_Test {
 
     //  tag::buildAccount[]
-    // TODO Compléter la fonction buildAccount
-    // TODO la fonction possède 2 paramètres en entrée : une personne et un solde
+    // Compléter la fonction buildAccount
+    // la fonction possède 2 paramètres en entrée : une personne et un solde
     BiFunction<Person, Integer, Account> buildAccount = (p,i) -> {
     	Account a = new Account();
     	a.setBalance(i);

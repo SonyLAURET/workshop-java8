@@ -16,7 +16,6 @@ public class Function_07_Test {
     // compléter la méthode pour qu'elle renvoie une chaîne de caractères de la forme "(<nb1><symbol><nb2>)=<resultat>"
     // ex. "(10+11)=21", "(5-2)=3"
     String format(int nb1, int nb2, String symbol, IntBinaryOperator operator) {
-        // TODO
     	return "("+nb1+symbol+nb2+")="+operator.applyAsInt(nb1, nb2);
         
     }
